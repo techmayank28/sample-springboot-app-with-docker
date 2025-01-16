@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-minikubeapp-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: springboot-minikubeapp
+  template:
+    metadata:
+      labels:
+        app: springboot-minikubeapp
+    spec:
+      containers:
+        - name: springboot-minikubeapp
+          image: mayanksingh280202/sample-springboot-app-with-docker:latest
+          ports:
+            - containerPort: 9090
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "500m"
+            limits:
+              memory: "512Mi"
+              cpu: "1"
